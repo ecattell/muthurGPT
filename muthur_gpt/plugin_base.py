@@ -1,6 +1,13 @@
 from muthur_gpt import constants
 
 class Plugin():
+    """
+    Base class for all plugins.
+    Plugins alter the prompt and behavior of MU/TH/UR.
+
+    Different plugins can be loaded in muthurGPT to initialize MU/TH/UR in
+    different contexts. For example, different ships or different storylines.
+    """
     def __init__(self, name, config, terminal, path_resolver):
         self.name = name
         self.config = config

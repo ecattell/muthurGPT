@@ -9,6 +9,9 @@ from openai import OpenAI
 from muthur_gpt import constants
 
 class ChatBot():
+    """
+    Base class to handle interaction with chat bots
+    """
     def __init__(self):
         pass
 
@@ -24,7 +27,7 @@ class ChatBot():
 
 class GPTBot(ChatBot):
     """
-    Primary bot to handle interaction with muthur
+    Primary chatGPT bot to handle interaction with muthur
     """
     def __init__(self, prompt, config):
         api_key = os.getenv(constants.ENVVAR_OPENAI_API_KEY) or \
@@ -55,6 +58,10 @@ class GPTBot(ChatBot):
         return bot_replay
 
 class TestBot(ChatBot):
+    """
+    Bot for testing without accessing online API.
+    Plugins can filter replies as necessary.
+    """
     def __init__(self, plugin):
         self.plugin = plugin
 

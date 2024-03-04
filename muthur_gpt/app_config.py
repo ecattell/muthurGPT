@@ -3,6 +3,9 @@ import json
 from muthur_gpt import constants
 
 class Config():
+    """
+    Config which allows plugins to override values with matching keys
+    """
     def __init__(self, config_path, plugin_name):
         with open(config_path, "r") as file:
             self.config = json.load(file)

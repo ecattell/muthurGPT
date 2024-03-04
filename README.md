@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+# muthurGPT
+Chat bot that simulates an onboard computer such as MU/TH/UR for Alien RPG or other TTRPGs
+=======
+>>>>>>> 4961c45 (Initial commit)
 OVERVIEW:
 This is a chat bot that you can use to simulate an onboard computer such as MUTHUR for Alien RPG or other sci-fi tabletop role playing gamings.
 
@@ -46,4 +53,9 @@ OUTSTANDING WORK (in vague order of priority):
 - Make prompts configurable with string replacements.
 - Add standardized variant definitions in config for plugins.
 - Have two streams --- one for stdout/debugging one for MUTHUR.
+<<<<<<< HEAD
 - Write simple unit tests, especially for plugin dev.
+=======
+- Write simple unit tests, especially for plugin dev.
+>>>>>>> 1579ee3 (Initial commit)
+>>>>>>> 4961c45 (Initial commit)

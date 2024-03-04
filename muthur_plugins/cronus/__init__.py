@@ -5,6 +5,9 @@ import random
 
 @register_plugin
 class CronusPlugin(Plugin):
+    """
+    Plugin to represent the Cronus in the Chariot of the Gods cinematic.
+    """
     NAME = "cronus"
 
     def __init__(self, config, terminal, path_resolver):
@@ -29,7 +32,6 @@ class CronusPlugin(Plugin):
             self.terminal.print_hbar()
 
     def filter_bot_reply(self, bot_reply):
-        #TODO show_warning=False
         if "COMMAND SEQUENCE OVERRIDE" in bot_reply:
             show_warning=True
             self.react_command_sequence_override()

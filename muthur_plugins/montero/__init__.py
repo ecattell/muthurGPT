@@ -3,6 +3,10 @@ from muthur_gpt.plugin_base import Plugin
 
 @register_plugin
 class MonteroPlugin(Plugin):
+    """
+    Plugin to represent the Montero in the Chariot of the Gods cinematic.
+    """
+
     NAME = "montero"
 
     def __init__(self, config, terminal, path_resolver):

@@ -1,7 +1,3 @@
-"""
-This module handles the display and sound of the MU/TH/UR terminal.
-"""
-
 import os
 import random
 import subprocess
@@ -12,29 +8,15 @@ from termcolor import colored
 from muthur_gpt import constants
 
 class MuthurTerminal():
+    """
+    This module handles the display and sound of the MU/TH/UR terminal.
+    """
     def __init__(self, config, path_resolver):
         self.config = config
         self.path_resolver = path_resolver
 
     def clear(self):
         os.system("clear")
-
-    @property
-    def width(self):
-        """ Terminal width in chars """
-        return os.get_terminal_size().columns
-
-    @property
-    def height(self):
-        """ Terminal height in lines """
-        return os.get_terminal_size().lines
-
-    @property
-    def input_prefix(self):
-        """
-        Prefix before taking user input or displaying previous user input
-        """
-        return constants.INPUT_INDENT_LEN * " " + "»  "
 
     def print_header(self):
         muthur_name = self.config.get(constants.CONFIG_KEY_HEADER_NAME)
@@ -111,7 +93,9 @@ class MuthurTerminal():
         process.kill()
 
     def print_reply(self, text):
-
+        """
+        Process a reply, substituting tags for ascii_art
+        """
         # Split the text into segments of regular text and image tags
         segments = re.split(r"(<IMG:[^>]+>)", text)
         for segment in segments:
@@ -202,3 +186,20 @@ class MuthurTerminal():
             ascii_image,
             self.config.get(constants.CONFIG_KEY_MAP_SPEED),
             sound=True)
+
+    @property
+    def width(self):
+        """ Terminal width in chars """
+        return os.get_terminal_size().columns
+
+    @property
+    def height(self):
+        """ Terminal height in lines """
+        return os.get_terminal_size().lines
+
+    @property
+    def input_prefix(self):
+        """
+        Prefix before taking user input or displaying previous user input
+        """
+        return constants.INPUT_INDENT_LEN * " " + "»  "
