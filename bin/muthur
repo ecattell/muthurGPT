@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+import argparse
+import os
+import sys
+
+# Import muthur lib
+muthur_lib = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+if muthur_lib not in sys.path:
+    sys.path.append(muthur_lib)
+
+from muthur_gpt import app_config
+from muthur_gpt import bots
+from muthur_gpt import constants
+from muthur_gpt import muthur_terminal
+from muthur_gpt import path_utils
+from muthur_gpt import plugin_base
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--debug", action="store_true",
+        help="Run in debug mode to use local testing rather than chatGPT. "
+        "Be aware debug can also be specified in the config. If debug mode "
+        "via either means, then muthur will run in debug mode.")
+    parser.add_argument(
+        "--plugin", default="cronus", dest="plugin_name",
+        help="Specify a particular Muthur plugin. Defaults to Cronus.")
+    return parser.parse_args()
+
+def run_muthur(config, path_resolver, terminal, plugin, bot):
+    # Play intro
+    terminal.clear()
+    if not config.get(constants.CONFIG_KEY_SKIP_INTRO):
+        plugin.play_intro()
+
+    # Loop to interactively ask questions from the terminal
+    user_input = ''
+    while True:
+        terminal.clear()
+        terminal.print_header()
+        plugin.draw_secondary_header()  # [plugin only, optional]
+        terminal.print_previous_input(user_input)
+
+        # Get reply from bot
+        if user_input:
+            # Filter input before sending to bot [plugin only, optional]
+            user_input = plugin.filter_user_input(user_input)
+            bot_reply = bot.get_reply(user_input)
+        else:
+            # This is either the first message or there is no user input.
+            bot_reply = config.get(constants.CONFIG_KEY_GENERIC_BOT_MESSAGE)
+
+        # Filter bot reply [plugin only, optional]
+        bot_reply = plugin.filter_bot_reply(bot_reply)
+
+        # Display reply
+        terminal.print_reply(bot_reply)
+
+        # Prompt user for input
+        user_input = terminal.get_input()
+
+def main():
+    args = parse_args()
+
+    # Initialize
+    path_resolver = path_utils.PathResolver(args.plugin_name)
+    config = app_config.Config(path_resolver.get_config_path(), args.plugin_name)
+    terminal = muthur_terminal.MuthurTerminal(config, path_resolver)
+    plugin = plugin_base.Plugin.create_plugin(
+        args.plugin_name, config, terminal, path_resolver)
+    bot = bots.ChatBot.create_bot(args, config, plugin)
+
+    # Run!
+    try:
+        run_muthur(config, path_resolver, terminal, plugin, bot)
+    except KeyboardInterrupt:
+        print("Exiting.")
+
+
+if __name__ == "__main__":
+    main()
