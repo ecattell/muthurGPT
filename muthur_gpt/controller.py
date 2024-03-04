@@ -1,7 +1,7 @@
 from muthur_gpt import app_config
 from muthur_gpt import bots
 from muthur_gpt import constants
-from muthur_gpt import terminal
+from muthur_gpt import muthur_terminal
 from muthur_gpt import path_utils
 from muthur_gpt import plugin_base
 
@@ -52,7 +52,7 @@ class MuthurController():
     def create_from_args(args):
         path_resolver = path_utils.PathResolver(args.plugin_name)
         config = app_config.Config(path_resolver.get_config_path(), args.plugin_name)
-        terminal = terminal.MuthurTerminal(config, path_resolver)
+        terminal = muthur_terminal.MuthurTerminal(config, path_resolver)
         plugin = plugin_base.Plugin.create_plugin(
             args.plugin_name, config, terminal, path_resolver)
         bot = bots.ChatBot.create_bot(args, config, plugin)

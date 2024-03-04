@@ -7,7 +7,6 @@ import sys
 muthur_lib = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
 if muthur_lib not in sys.path:
     sys.path.append(muthur_lib)
-
 from muthur_gpt import controller
 
 def parse_args():
@@ -24,9 +23,9 @@ def parse_args():
 
 def main():
     args = parse_args()
-    controller = controller.MuthurController.create_from_args(args)
+    muthur_controller = controller.MuthurController.create_from_args(args)
     try:
-        controller.run()
+        muthur_controller.run()
     except KeyboardInterrupt:
         print("Exiting.")
 
