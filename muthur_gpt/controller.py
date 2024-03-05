@@ -52,7 +52,7 @@ class MuthurController():
     def create_from_args(args):
         path_resolver = path_utils.PathResolver(args.plugin_name)
         config = app_config.Config(path_resolver.get_config_path(), args.plugin_name)
-        terminal = muthur_terminal.MuthurTerminal(config, path_resolver)
+        terminal = muthur_terminal.MuthurTerminal(config, path_resolver, args.mute)
         plugin = plugin_base.Plugin.create_plugin(
             args.plugin_name, config, terminal, path_resolver)
         bot = bots.ChatBot.create_bot(args, config, plugin)

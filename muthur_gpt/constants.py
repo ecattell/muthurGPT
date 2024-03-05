@@ -37,6 +37,7 @@ CONFIG_KEY_DEFAULT_SPEED = "default_speed"
 CONFIG_KEY_PROMPT_WAIT_TIME = "prompt_wait_time"
 CONFIG_KEY_MAP_SPEED = "map_speed"
 CONFIG_KEY_TEXT_TO_SPEECH = "text_to_speech"
+CONFIG_KEY_FORCE_UPPER_CASE = "force_upper_case"
 
 # Envvars
 ENVVAR_OPENAI_API_KEY = "OPENAI_API_KEY"

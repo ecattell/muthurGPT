@@ -16,9 +16,7 @@ def load_plugins():
     """
     import muthur_plugins
     plugin_root_dir = muthur_plugins.__path__[0]
-    for plugin_dir in get_plugin_subdirs(plugin_root_dir):
-        for _, plugin_name, _ in pkgutil.iter_modules([plugin_root_dir]):
-            rel_dir = os.path.relpath(plugin_dir, plugin_root_dir)
-            module_name = '.'.join(["muthur_plugins", plugin_name])
-            importlib.import_module(module_name)
-            print(f"Imported module: {module_name}")
+    for _, plugin_name, _ in pkgutil.iter_modules([plugin_root_dir]):
+        rel_dir = os.path.relpath(plugin_root_dir, plugin_root_dir)
+        module_name = '.'.join(["muthur_plugins", plugin_name])
+        importlib.import_module(module_name)

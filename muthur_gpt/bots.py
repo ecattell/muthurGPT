@@ -23,19 +23,19 @@ class ChatBot():
         if args.debug or config.get(constants.CONFIG_KEY_DEBUG):
             return TestBot(plugin)
         else:
-            return GPTBot(plugin.build_prompt(), config)
+            return GPTBot(plugin.build_prompt(), config, args.api_key)
 
 class GPTBot(ChatBot):
     """
     Primary chatGPT bot to handle interaction with muthur
     """
-    def __init__(self, prompt, config):
-        api_key = os.getenv(constants.ENVVAR_OPENAI_API_KEY) or \
+    def __init__(self, prompt, config, api_key_arg):
+        api_key = api_key_arg or os.getenv(constants.ENVVAR_OPENAI_API_KEY) or \
             config.get(constants.CONFIG_KEY_OPENAI_API_KEY)
         if not api_key:
-            print("No openAI API key found in config or env. "
-                  "Please obtain one from openAI and set it in either. "
-                  "Exiting.")
+            print("No openAI API key found in config, env, or args. "
+                  "Please obtain one from openAI and set it via one of these. "
+                  "methods. Exiting.")
             exit(1)
         self.client = OpenAI(api_key = api_key)
         system_message = {

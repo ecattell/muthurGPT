@@ -11,9 +11,10 @@ class MuthurTerminal():
     """
     This module handles the display and sound of the MU/TH/UR terminal.
     """
-    def __init__(self, config, path_resolver):
+    def __init__(self, config, path_resolver, mute):
         self.config = config
         self.path_resolver = path_resolver
+        self.mute = mute
 
     def clear(self):
         os.system("clear")
@@ -60,7 +61,7 @@ class MuthurTerminal():
         Draw a progress bar on screen.
         """
         print(" " * l_margin, prependText, end="", flush=True)
-        bar_char_count = self.width - l_margin - len(prependText) - r_margin
+        bar_char_count = max(self.width - l_margin - len(prependText) - r_margin, 1)
         time_per_char = draw_time / bar_char_count
         for i in range(0, bar_char_count):
             print(character, end="", flush=True)
@@ -81,7 +82,7 @@ class MuthurTerminal():
         for char in text:
             print(char, end="", flush=True)
             time.sleep(speed)
-            if sound:
+            if sound and not self.mute:
                 poll = process.poll()
                 if poll is not None:
                     # Sound is over
@@ -90,7 +91,8 @@ class MuthurTerminal():
                     return_sound_name = "loud_type_start"
                     process = self.play_sound(return_sound_name)
         self.print_space(1)
-        process.kill()
+        if process:
+            process.kill()
 
     def print_reply(self, text):
         """
@@ -106,11 +108,14 @@ class MuthurTerminal():
             if match:
                 image_name = match.group(1)
                 self.display_image(image_name)
-            elif self.config.get(constants.CONFIG_KEY_TEXT_TO_SPEECH):
-                self.say(segment)
-                self.print_slow_lines(segment)
             else:
-                self.print_slow(segment)
+                if self.config.get(constants.CONFIG_KEY_FORCE_UPPER_CASE):
+                    segment = segment.upper()
+                if self.config.get(constants.CONFIG_KEY_TEXT_TO_SPEECH):
+                    self.say(segment)
+                    self.print_slow_lines(segment)
+                else:
+                    self.print_slow(segment)
 
     def say(self, text):
         """
@@ -131,13 +136,14 @@ class MuthurTerminal():
         for line in text.split("\n"):
             print(line)
             time.sleep(speed)
-            if sound:
+            if sound and not self.mute:
                 poll = process.poll()
                 if poll is not None:
                     # Sound is over
                     process = self.play_sound("subtle_long_type")
         self.print_space(1)
-        process.kill()
+        if process:
+            process.kill()
 
     def print_previous_input(self, user_input):
         self.print_space(constants.PREV_INPUT_TOP_MARGIN)
@@ -160,10 +166,11 @@ class MuthurTerminal():
         time.sleep(wait_time)
 
     def play_sound(self, sound_name):
-        sound_path = self.path_resolver.get_sound_path(sound_name)
-        if not sound_path:
-            raise Exception(f"Sound file unresolved for {sound_name}")
-        return subprocess.Popen(["afplay", sound_path])
+        if not self.mute:
+            sound_path = self.path_resolver.get_sound_path(sound_name)
+            if not sound_path:
+                raise Exception(f"Sound file unresolved for {sound_name}")
+            return subprocess.Popen(["afplay", sound_path])
 
     def display_image(self, image_name):
         """

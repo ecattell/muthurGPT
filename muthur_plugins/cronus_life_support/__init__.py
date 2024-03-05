@@ -4,26 +4,48 @@ from muthur_gpt.plugin_base import Plugin
 import random
 
 @register_plugin
-class CronusPlugin(Plugin):
+class CronusLifeSupportPlugin(Plugin):
     """
     Plugin to represent the Cronus in the Chariot of the Gods cinematic.
+
+    This variant of the Cronus plugin tracks life support, and will
+    automatically revive the crew when it's fully online.
     """
-    NAME = "cronus"
+    NAME = "cronus_life_support"
 
     def __init__(self, config, terminal, path_resolver):
         super().__init__(
-            CronusPlugin.NAME, config, terminal, path_resolver)
+            CronusLifeSupportPlugin.NAME, config, terminal, path_resolver)
 
+        self.life_support = LifeSupportTracker(config)
         with open(self.path_resolver.get_ascii_path("WEYLAND_LOGO"), "r") as f:
             self.logo = f.read()
 
         with open(self.path_resolver.get_ascii_path("BOOT_TEXT"), "r") as f:
             self.boot_text = f.read()
 
+    def draw_secondary_header(self):
+        """
+        Display life support power
+        """
+        if self.life_support.boot_active or self.life_support.power_percent == 100:
+            self.life_support.increase_boot_step()
+            self.terminal.print_instant(
+                f"LIFE SUPPORT POWER: {self.life_support.power_percent:.2f}%")
+            self.terminal.print_hbar()
+
     def filter_bot_reply(self, bot_reply):
         if "COMMAND SEQUENCE OVERRIDE" in bot_reply:
             self.react_command_sequence_override()
+        if '<LIFE_SUPPORT_ENABLED>' in bot_reply:
+            self.life_support.start_boot()
+            bot_reply = bot_reply.replace('<LIFE_SUPPORT_ENABLED>', "")
         return bot_reply
+
+    def filter_user_input(self, user_input):
+        if self.life_support.is_online:
+            user_input += "\n<LIFE_SUPPORT_ONLINE>"
+        return user_input
 
     def filter_plugin_prompt(self, prompt):
         #TODO This could be made cleaner. Maybe specify these as pairs in config, and enable them via --update arg?
@@ -34,7 +56,7 @@ class CronusPlugin(Plugin):
         if self.config.get("cronus_main_airlock_broken"):
             prompt += "\n UPDATE: The main airlock on Deck A is damaged."
         if self.config.get("cronus_life_support_restored"):
-            prompt += "\n UPDATE: At this point, life support is already fully powered on. Low power mode is off, and temperature has returned to normal."
+            prompt += "\n UPDATE: At this point, life support is already fully powered on. Do not send the key for that. Low power mode is off, and temperature has returned to normal."
         if self.config.get("cronus_oxygen_restored"):
             prompt += "\n UPDATE: At this point, the crew have already restored oxygen."
         if self.config.get("cronus_misc_prompt_addendums"):
@@ -76,5 +98,28 @@ class CronusPlugin(Plugin):
         elif "map" in user_input:
             return "Map of decks A and B: <IMG:DECK_A> <IMG:DECK_B>"
         elif "life" in user_input:
-            return "Enabling life support."
+            return "Enabling life support.\n<LIFE_SUPPORT_ENABLED>"
+        elif "<LIFE_SUPPORT_ONLINE>" in user_input:
+            return "Life support fully online. Ending cryo."
         return ""
+
+class LifeSupportTracker():
+    def __init__(self, config):
+        self.boot_active = False
+        self.power_percent = 0
+        self.increase_range = config.get(
+            "cronus_life_support_increase_range", [8, 15])
+
+    def start_boot(self):
+        self.boot_active = True
+
+    def increase_boot_step(self):
+        self.power_percent += random.uniform(
+            self.increase_range[0], self.increase_range[1])
+        if self.power_percent >= 100:
+            self.boot_active = False
+            self.power_percent = 100
+
+    @property
+    def is_online(self):
+        return self.power_percent == 100

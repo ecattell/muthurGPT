@@ -10,9 +10,30 @@
   "generic_bot_message": "HELLO. ENTER QUERY.",
   "text_to_speech": false,
   "misc_addendums": "",
+  "force_upper_case": true,
   "plugins":
   {
+    "montero":
+    {
+      "header_name" : "MU/TH/UR 6500",
+      "self_destruct_active" : false,
+      "distress_call_detected" : false,
+      "distress_call_identified" : true,
+      "inform_salvage" : true,
+      "hull_breach" : true,
+      "superficial_damage" : false
+    },
     "cronus":
+    {
+      "header_name" : "MU/TH/UR 2000",
+      "cronus_main_airlock_open": false,
+      "cronus_main_airlock_broken": false,
+      "cronus_cryo_ended": false,
+      "cronus_life_support_restored": false,
+      "cronus_oxygen_restored": false,
+      "intro_speed": 0.013
+    },
+    "cronus_life_support":
     {
       "header_name" : "MU/TH/UR 2000",
       "cronus_main_airlock_open": false,
@@ -22,12 +43,6 @@
       "cronus_oxygen_restored": false,
       "cronus_life_support_increase_range": [8, 15],
       "intro_speed": 0.013
-    },
-    "montero":
-    {
-      "header_name" : "MU/TH/UR 6500",
-      "self_destruct_active" : false
     }
   }
 }
-

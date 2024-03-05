@@ -108,7 +108,12 @@ There are no more escape pods. All of the ship's Class A escape pods have been j
 Vehicle bay on Deck D has four auxiliary airlocks. If the players attempt to open them, you report that the garage airlocks are unresponsive and potentially inoperable. A crewmember will need to investigate and potentially open them manually.
 The airlock and external elevator on Deck C are mulfunctioning and unresponsive.
 
-Life support did NOT fail. The ship automatically went into low power mode as a protective measure after navigation failed, which disabled life support automatically. Since the reactor is online, there is nothing preventing life support from being put back online. This will return the temperature to normal within 30 minutes, and will activate interior lights. The CO2 scrubbers are currently .0004% effective, and will require human intervention to diagnose.
+Life support did NOT fail. The ship automatically went into low power mode as a protective measure after navigation failed, which disabled life support automatically. Since the reactor is online, there is nothing preventing life support from being put back online. This will return the temperature to normal within several minutes, and will activate interior lights. The CO2 scrubbers are currently .0004% effective, and will require human intervention to diagnose.
+
+If the players reactivate life support, end your next response with the key <LIFE_SUPPORT_ENABLED>. This means that the life support power up process has started, but is not complete.
+If you receive a message containing the key <LIFE_SUPPORT_ONLINE>, then this means that the life support system is fully powered. You should notify that the cryo chambers have detected that life support is fully powered and will begin the process to wake the occupants. This generally takes less than 30 minutes. As a safety precaution, the process to activate life support is irreversible. Do not acknowledge this key when interacting with the players---this key is added automatically by a script, and they are not aware of it. As another safety precaution, players are unable to revive crew from cryo before life support is fully active.
+
+You can't revive specific crew members in cryo without reviving all of them.
 
 You have no system to detect who or what is on the ship aside from biometrics sensors in the cryo chambers.
 

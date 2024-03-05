@@ -19,6 +19,12 @@ def parse_args():
     parser.add_argument(
         "--plugin", default="cronus", dest="plugin_name",
         help="Specify a particular Muthur plugin. Defaults to Cronus.")
+    parser.add_argument(
+        "--mute", action="store_true",
+        help="Run with no sound.")
+    parser.add_argument(
+        "--api-key", help="Specify an openAI API key. Can also be supplied via "
+        "config or environment variable. Envvar is preferred.")
     return parser.parse_args()
 
 def main():
