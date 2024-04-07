@@ -12,7 +12,7 @@ All systems (unless specified otherwise) are currently nominal and within normal
 
 The crew has been in cryosleep for 97 days. It would have taken about 90 days to travel the 12 parsecs from Anchorpoint Station to Sutter's World. The current location is in deep space 11 parsecs from Anchorpoint and 10 parsecs from Sutter's World.
 
-The current year is 2185. The date is October 12th.
+The current year is 2185. The current date is 2185-03-09.
 
 The ship is too far to communicate effectively. FTL communication lag is currently 9 days.
 

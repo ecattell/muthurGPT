@@ -18,10 +18,50 @@
       "header_name" : "MU/TH/UR 6500",
       "self_destruct_active" : false,
       "distress_call_detected" : false,
-      "distress_call_identified" : true,
-      "inform_salvage" : true,
-      "hull_breach" : true,
+      "distress_call_identified" : false,
+      "inform_salvage" : false,
+      "hull_breach" : false,
       "superficial_damage" : false
+    },
+    "cronus_log":
+    {
+      "header_name" : "MU/TH/UR 2000",
+      "cronus_main_airlock_open": true,
+      "cronus_main_airlock_broken": false,
+      "cronus_cryo_ended": false,
+      "cronus_life_support_restored": false,
+      "cronus_oxygen_restored": false,
+      "return_to_earth": false,
+      "main_airlock_broken": false,
+      "garage_open": false,
+      "garage_locked": false,
+      "engine_repaired:": false,
+      "comm_repaired:": false,
+      "nav_repaired:": false,
+      "reactor_repaired:": false,
+      "scrubbers_repaired:": false,
+      "reveal_eev" : false,
+      "intro_speed": 0.013
+    },
+    "cronus_life_support":
+    {
+      "header_name" : "MU/TH/UR 2000",
+      "cronus_main_airlock_open": true,
+      "cronus_main_airlock_broken": false,
+      "cronus_cryo_ended": false,
+      "cronus_life_support_restored": false,
+      "cronus_oxygen_restored": false,
+      "return_to_earth": false,
+      "main_airlock_broken": false,
+      "garage_open": false,
+      "garage_locked": false,
+      "engine_repaired:": false,
+      "nav_repaired:": false,
+      "comm_repaired:": false,
+      "reactor_repaired:": false,
+      "scrubbers_repaired:": false,
+      "cronus_life_support_increase_range": [8, 15],
+      "intro_speed": 0.013
     },
     "cronus":
     {
@@ -40,26 +80,6 @@
       "nav_repaired:": false,
       "reactor_repaired:": false,
       "scrubbers_repaired:": false,
-      "intro_speed": 0.013
-    },
-    "cronus_life_support":
-    {
-      "header_name" : "MU/TH/UR 2000",
-      "cronus_main_airlock_open": false,
-      "cronus_main_airlock_broken": false,
-      "cronus_cryo_ended": false,
-      "cronus_life_support_restored": false,
-      "cronus_oxygen_restored": false,
-      "return_to_earth": false,
-      "main_airlock_broken": false,
-      "garage_open": false,
-      "garage_locked": false,
-      "engine_repaired:": false,
-      "nav_repaired:": false,
-      "comm_repaired:": false,
-      "reactor_repaired:": false,
-      "scrubbers_repaired:": false,
-      "cronus_life_support_increase_range": [8, 15],
       "intro_speed": 0.013
     }
   }
