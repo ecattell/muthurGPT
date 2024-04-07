@@ -49,7 +49,7 @@ A plugin in **muthurGPT** can be loaded to initialize MU/TH/UR in different cont
 - Duplicate the ``muthur_plugins/template`` directory, and rename it to a name of your choice.
 - Update and rename the copied ``template_prompt.txt`` to include whatever scenario-specific information MU/TH/UR needs to have. (and rename it to ``<YOURNAME>_prompt.txt``)
 - In the copied template version of ``__init__.py``, rename ``TemplatePlugins`` to ``<YOURNAME>Plugin`` and ``NAME`` to be ``<YOURNAME>``.
-- You're good to go! If you want to do advanced behavior, such as filtering input/output from GPT to use special tokens / maps, etc, then you can use the Cronus as an example. Otherwise, the Montero is a simpler starting point for reference.
+- You're good to go! For most cases, I would suggest using the Montero plugin as reference. If you want to do advanced behavior, such as filtering input/output to display maps, then you can use the cronus or cronus_life_support plugins as reference instead.
 
 ## Outstanding work (in vague order of priority)
 - Output sound in less dumb way.
