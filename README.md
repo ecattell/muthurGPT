@@ -33,7 +33,7 @@ Take a look at the config to see what is configurable.
 Each plugin can have their own overrides in the config. When running in the context of a plugin, values will be used instead of the config defaults if both exist. For a simple example, you could overwrite the title bar with different version of MU/TH/UR.
 
 ### OPENAI API KEY
-The API key can be set either via the environment variable ``OPENAI_API_KEY`` or via the config key ``openai_api_key``. I would suggest the former for safety, but the latter can be used to simplify setup. I would recommend disabling auto-refill on your account balance, and only adding money incrementally.
+The API key can be set via the environment variable ``OPENAI_API_KEY``, via command line arg, or via the config key ``openai_api_key``. I would suggest the former options for safety, but the config key can be used to simplify setup. I would recommend disabling auto-refill on your account balance, and only adding money incrementally.
 
 ## Plugins
 
