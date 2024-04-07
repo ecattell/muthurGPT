@@ -16,16 +16,16 @@ This was a quick weekend project, but feel free to add new plugins or features. 
 ### Suggested terminal emulator
 This package outputs directly to stdout. I recommend running this on a terminal with a scanline aesthetic, such as cool-retro-terminal.
 
-I recommend using a rather large terminal font size to get the right look. The included ascii art assumes a minimum terminal width of 64 characters. That said, I wouldn't recommend going higher than 100. I usually run it with a width of 64.
+I recommend using a rather large terminal font size to get the right look. The included ascii art assumes a minimum terminal width of 64 characters. That said, I wouldn't recommend going higher than 100.
 
 ### Installation
 This is all python, so installation is pretty straightforward.
 
 1) Update the config with your openAI API key.
 2) Until you get your look right, I recommend specifying ``debug=true`` in the config so that it doesn't access openAI while you're iterating on cool-retro-terminal settings/etc.
-3) At the muthur script in the bin dir to your path or just run it directly. Run ``muthur --plugin cronus`` for the Cronus' onboard MU/TH/UR or ``muthur --plugin montero`` for the montero.
+3) Add the muthur script in the bin dir to your path or just run it directly. Run ``muthur --plugin cronus`` for the Cronus' onboard MU/TH/UR or ``muthur --plugin montero`` for the montero.
 
-To be honest, I haven't attempted to run this from another machine yet, so I might have missed some steps. Because I'm doing sound in a dumb way for now, it will be mac dependant unless you update play_sound in terminal.py
+To be honest, I haven't attempted to run this from another machine yet, so I might have missed some steps. Because I'm doing sound in a dumb way for now, it will be mac dependant unless you update play_sound() in terminal.py
 
 ### Config
 Take a look at the config to see what is configurable.
