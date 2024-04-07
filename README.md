@@ -6,6 +6,11 @@ It runs via OpenAI's API, and requires that you make a paid account with them to
 
 This was a quick weekend project, but feel free to add new plugins or features. I've tried to design this in a modular way to allow the easy addition of new story contexts via the plugin system.
 
+## Images
+
+![Example query](https://github.com/ecattell/muthurGPT/blob/main/screenshots/query.png?raw=true)
+![Example schematic](https://github.com/ecattell/muthurGPT/blob/main/screenshots/schematic.png?raw=true)
+
 ## Setup
 
 ### Suggested terminal emulator
