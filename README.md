@@ -11,6 +11,11 @@ This was a quick weekend project, but feel free to add new plugins or features. 
 ![Example query](https://github.com/ecattell/muthurGPT/blob/main/screenshots/query.png?raw=true)
 ![Example schematic](https://github.com/ecattell/muthurGPT/blob/main/screenshots/schematic.png?raw=true)
 
+## Video
+Follow this YouTube link if you'd like to see muthurGPT in action.
+
+[![Video of muthurGPT](https://i.ytimg.com/an_webp/2Sh9BtFipck/mqdefault_6s.webp?du=3000&sqp=CPeZ0LAG&rs=AOn4CLBwz0fB1apDiTL-kv0Xh1TtSFJPJA)](https://youtu.be/2Sh9BtFipck?t=72)
+
 ## Setup
 
 ### Suggested terminal emulator
@@ -58,4 +63,4 @@ A plugin in **muthurGPT** can be loaded to initialize MU/TH/UR in different cont
 - Make prompts configurable with string replacements.
 - Add standardized variant definitions in config for plugins.
 - Have two streams --- one for stdout/debugging one for MU/TH/UR.
-- Write simple unit tests, especially for plugin dev.
+- Write simple unit tests, especially for plugin dev.  
