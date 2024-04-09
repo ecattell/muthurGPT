@@ -12,9 +12,7 @@ This was a quick weekend project, but feel free to add new plugins or features. 
 ![Example schematic](https://github.com/ecattell/muthurGPT/blob/main/screenshots/schematic.png?raw=true)
 
 ## Video
-Follow this YouTube link if you'd like to see muthurGPT in action.
-
-[![Video of muthurGPT](https://i.ytimg.com/an_webp/2Sh9BtFipck/mqdefault_6s.webp?du=3000&sqp=CPeZ0LAG&rs=AOn4CLBwz0fB1apDiTL-kv0Xh1TtSFJPJA)](https://youtu.be/2Sh9BtFipck?t=72)
+[YouTube video of muthurGPT in action](https://youtu.be/2Sh9BtFipck?t=72)
 
 ## Setup
 
