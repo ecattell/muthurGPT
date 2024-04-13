@@ -31,7 +31,7 @@ This is all python, so installation is pretty straightforward.
 To be honest, I haven't attempted to run this from another machine yet, so I might have missed some steps. Because I'm doing sound in a dumb way for now, it will be mac dependant unless you update play_sound() in terminal.py
 
 ### Config
-Take a look at the config to see what is configurable.
+You can configure MU/TH/UR plugins for different acts and story points. For example, the Cronus plugin can be configured to acknowledge that the characters have already woken from cryo. Take a look at the config file to see what else is configurable.
 
 Each plugin can have their own overrides in the config. When running in the context of a plugin, values will be used instead of the config defaults if both exist. For a simple example, you could overwrite the title bar with different version of MU/TH/UR.
 
