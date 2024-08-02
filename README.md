@@ -56,8 +56,9 @@ A plugin in **muthurGPT** can be loaded to initialize MU/TH/UR in different cont
 
 ## Outstanding work (in vague order of priority)
 - Output sound in less dumb way.
-- Allow for user to quit MU/TH/UR from within MU/TH/UR using natural language.
 - Output log as save. Allow program to be continued from save file.
+- Allow for user to quit MU/TH/UR from within MU/TH/UR using natural language.
+- Add a mode to allow it to print exact text as defined in a config or text document, rather than interacting with bot (user request)
 - Make prompts configurable with string replacements.
 - Add standardized variant definitions in config for plugins.
 - Have two streams --- one for stdout/debugging one for MU/TH/UR.
