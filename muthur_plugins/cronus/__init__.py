@@ -104,10 +104,10 @@ class CronusPlugin(Plugin):
         self.terminal.print_noise_screen(0.5)
 
     def get_test_reply(self, user_input):
-        if "goo" in user_input:
+        if "goo" in user_input.lower():
             return 'Please input COMMAND SEQUENCE OVERRIDE CODE'
-        elif "map" in user_input:
+        elif "map" in user_input.lower():
             return "Map of decks A and B: <IMG:DECK_A> <IMG:DECK_B>"
-        elif "life" in user_input:
+        elif "life" in user_input.lower():
             return "Enabling life support."
         return ""

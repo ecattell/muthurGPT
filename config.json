@@ -1,6 +1,6 @@
 {
   "debug": false,
-  "skip_intro": true,
+  "skip_intro": false,
   "openai_model": "gpt-4-1106-preview",
   "openai_api_key": "",
   "header_name" : "MU/TH/UR",
@@ -62,6 +62,12 @@
       "scrubbers_repaired:": false,
       "cronus_life_support_increase_range": [8, 15],
       "intro_speed": 0.013
+    },
+    "fort_nebraska":
+    {
+      "header_name" : "A.P.O.L.L.O.",
+      "containment_protocol": true,
+      "intro_speed": 0.02
     }
   }
 }
