@@ -12,6 +12,7 @@ RESOURCE_DIR = "resources"
 SOUND_DIR = "sounds"
 ASCII_DIR = "ascii"
 PROMPT_DIR = "prompts"
+SAVES_DIR = "save_files"
 
 # File names
 CONFIG_NAME = "config"
@@ -24,9 +25,9 @@ PROMPT_EXT = ".txt"
 ASCII_IMAGE_EXT = ".txt"
 SOUND_EXT = ".wav"
 CONFIG_EXT = ".json"
+SAVE_EXT = ".json"
 
 # Config keys
-CONFIG_KEY_PLUGIN = "plugins"
 CONFIG_KEY_DEBUG = "debug"
 CONFIG_KEY_SKIP_INTRO = "skip_intro"
 CONFIG_KEY_OPENAI_MODEL = "openai_model"
