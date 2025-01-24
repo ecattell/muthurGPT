@@ -85,6 +85,13 @@ class MuthurController():
                 self.config.set(parts[1], parts[2], parts[3])
             else:
                 print(f"Invalid command")
+        elif command.startswith("!save"):
+            parts = command.split()
+            if len(parts) == 1:
+                self.config.save()
+            if len(parts) == 2:
+                name = parts[1]
+                self.config.save(name)
         else:
             print(f"Command {command} not implemented")
 
