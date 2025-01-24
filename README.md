@@ -52,11 +52,18 @@ A plugin in **muthurGPT** can be loaded to initialize MU/TH/UR in different cont
 - Duplicate the ``muthur_plugins/template`` directory, and rename it to a name of your choice.
 - Update and rename the copied ``template_prompt.txt`` to include whatever scenario-specific information MU/TH/UR needs to have. (and rename it to ``<YOURNAME>_prompt.txt``)
 - In the copied template version of ``__init__.py``, rename ``TemplatePlugins`` to ``<YOURNAME>Plugin`` and ``NAME`` to be ``<YOURNAME>``.
+- If you need it, edit your template's ``config.json`` to add more variability
 - You're good to go! For most cases, I would suggest using the Montero plugin as reference. If you want to do advanced behavior, such as filtering input/output to display maps, then you can use the cronus or cronus_life_support plugins as reference instead.
+
+## Commands
+While running the program, the user may use commands to interact with the tool. As of now following commands are implemented:
+ - ``!print`` prints the config. ``!print key`` allows you to print just one specific key and value
+ - ``!set key value`` allows you to set a new value to a key. If you wish to add a new key, add a third argument - True (``!print key value True``)
+ - ``!exit`` allows you to exit the program as if you used keyboard interrupt
+ - ``!save`` allows you to save the current status of the interaction. Use ``!save name`` to choose you name for the savefile
 
 ## Outstanding work (in vague order of priority)
 - Output sound in less dumb way.
-- Output log as save. Allow program to be continued from save file.
 - Allow for user to quit MU/TH/UR from within MU/TH/UR using natural language.
 - Add a mode to allow it to print exact text as defined in a config or text document, rather than interacting with bot (user request)
 - Make prompts configurable with string replacements.
