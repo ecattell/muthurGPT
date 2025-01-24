@@ -1,0 +1,9 @@
+{
+      "header_name" : "MU/TH/UR 6500",
+      "self_destruct_active" : false,
+      "distress_call_detected" : false,
+      "distress_call_identified" : false,
+      "inform_salvage" : false,
+      "hull_breach" : false,
+      "superficial_damage" : false
+    }
