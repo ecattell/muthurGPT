@@ -1,5 +1,6 @@
 from muthur_gpt import constants
 
+
 class Plugin():
     """
     Base class for all plugins.
@@ -13,6 +14,9 @@ class Plugin():
         self.config = config
         self.terminal = terminal
         self.path_resolver = path_resolver
+
+    def get_name(self):
+        return self.name
 
     def build_prompt(self):
         prompt_prefix_path = self.path_resolver.get_prompt_path(
@@ -76,12 +80,11 @@ class Plugin():
         """
         return user_input
 
-
     def get_test_reply(self, user_input):
         """
         It's not required for plugins to implement a test reply.
         This allows some testing when not connected to OpenAI API.
-        If plugin returns an empty response, it be replaced with temp text.
+        If plugin returns an empty response, it should be replaced with temp text.
         """
         return ""
 
@@ -91,15 +94,16 @@ class Plugin():
             raise Exception(
                 "Plugin not recognized. "
                 "Has it been added to all_plugins?")
-
-        # Warn if plugin doesn't have config
-        if name not in config.get(constants.CONFIG_KEY_PLUGIN):
-            print(f"No config found for plugin {name}. Continuing.")
+        else:
+            print(f"Plugin {name} recognized as it exists in {all_plugins}")
 
         return all_plugins[name](config, terminal, path_resolver)
 
+
 # All plugins need to register themselves with this decorator
 all_plugins = {}
+
+
 def register_plugin(cls):
     """
     A decorator to register plugin classes
