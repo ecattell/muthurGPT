@@ -114,7 +114,7 @@ class Config:
         """
         # Generate a default name if none is provided
         if name is None:
-            name = f'{self.plugin_name.name}_{datetime.now().strftime("%Y-%m-%d-%H-%M")}'
+            name = f'{self.plugin_name}_{datetime.now().strftime("%Y-%m-%d-%H-%M")}'
 
         # Path to save directory
         saves_dir_path = os.path.join(
