@@ -19,8 +19,11 @@ class MuthurTerminal():
     def clear(self):
         os.system("clear")
 
-    def print_header(self):
-        muthur_name = self.config.get(constants.CONFIG_KEY_HEADER_NAME)
+    def print_header(self, header_override=None):
+        if header_override:
+            muthur_name = header_override
+        else:
+            muthur_name = self.config.get(constants.CONFIG_KEY_HEADER_NAME)
         header = " "*constants.TITLE_OFFSET_LEN + F"╠█▓▒░  {muthur_name}  "
         self.print_instant(header + "░"*(self.width-len(header)))
         self.print_hbar()

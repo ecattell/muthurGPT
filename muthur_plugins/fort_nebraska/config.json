@@ -1,5 +1,6 @@
 {
       "header_name" : "A.P.O.L.L.O.",
+      "intro_speed": 0.02,
       "containment_protocol": true,
-      "intro_speed": 0.02
-    }
+      "power_online": true
+}
