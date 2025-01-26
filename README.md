@@ -56,8 +56,8 @@ A plugin in **muthurGPT** can be loaded to initialize MU/TH/UR in different cont
 - You're good to go! For most cases, I would suggest using the Montero plugin as reference. If you want to do advanced behavior, such as filtering input/output to display maps, then you can use the cronus or cronus_life_support plugins as reference instead.
 
 ## Commands
-While running the program, the user may use commands to interact with the tool. As of now following commands are implemented:
- - ``!print`` prints the config. ``!print key`` allows you to print just one specific key and value
+While running the program, the user may use commands to interact with the tool. As of now, the following commands are implemented:
+ - ``!print`` prints the full config. ``!print key`` prints just one specific key and value.
  - ``!set key value`` allows you to set a new value to a key. If you wish to add a new key, add a third argument - True (``!print key value True``)
  - ``!exit`` allows you to exit the program as if you used keyboard interrupt
  - ``!save`` allows you to save the current status of the interaction. Use ``!save name`` to choose you name for the savefile
