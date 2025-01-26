@@ -33,7 +33,7 @@ To be honest, I haven't attempted to run this from another machine yet, so I mig
 ### Config
 You can configure MU/TH/UR plugins for different acts and story points. For example, the Cronus plugin can be configured to acknowledge that the characters have already woken from cryo. Take a look at the config file to see what else is configurable.
 
-Each plugin can have their own overrides in the config. When running in the context of a plugin, values will be used instead of the config defaults if both exist. For a simple example, you could overwrite the title bar with different version of MU/TH/UR.
+Each plugin can have their own overrides in the config. When running in the context of a plugin, plugin values will be used instead of the config defaults if both exist. For a simple example, the Fort Nebraska plugin overwrites the title bar with A.P.O.L.L.O. instead of MU/TH/UR.
 
 ### OPENAI API KEY
 The API key can be set via the environment variable ``OPENAI_API_KEY``, via command line arg, or via the config key ``openai_api_key``. I would suggest the former options for safety, but the config key can be used to simplify setup. I would recommend disabling auto-refill on your account balance, and only adding money incrementally.
