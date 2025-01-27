@@ -20,6 +20,7 @@ class MuthurController():
         self.terminal = terminal
         self.plugin = plugin
         self.bot = bot
+        self.plugin_name = plugin.get_name()
 
     def run(self):
         # Play intro
@@ -32,13 +33,13 @@ class MuthurController():
         try:
             while True:
                 self.terminal.clear()
-                self.terminal.print_header()
-                self.plugin.draw_secondary_header()  # [plugin only, optional]
-                self.terminal.print_previous_input(user_input)
-
                 if user_input.startswith("!"):
+                    self.terminal.print_header("Admin panel")
                     self.handle_command(user_input)
                 else:
+                    self.terminal.print_header()
+                    self.plugin.draw_secondary_header()  # [plugin only, optional]
+                    self.terminal.print_previous_input(user_input)
                     # Get reply from bot
                     if user_input:
                         # Filter input before sending to bot [plugin only, optional]
@@ -81,8 +82,16 @@ class MuthurController():
             parts = command.split()
             if len(parts) == 3:
                 self.config.set(parts[1], parts[2])
+                try:
+                    self.reload_bot()
+                except Exception as e:
+                    print(f"Failed to reload plugin: {e}")
             elif len(parts) == 4:
                 self.config.set(parts[1], parts[2], parts[3])
+                try:
+                    self.reload_bot()
+                except Exception as e:
+                    print(f"Failed to reload plugin: {e}")
             else:
                 print(f"Invalid command")
         elif command.startswith("!save"):
@@ -95,8 +104,19 @@ class MuthurController():
         else:
             print(f"Command {command} not implemented")
 
+    def reload_bot(self):
+        print('Attempting to reload chatbot')
+        if self.config.get(constants.CONFIG_KEY_DEBUG):
+            print('Reloading test bot')
+            self.bot = bots.TestBot(self.plugin)
+        else:
+            print('Reloading GPT bot')
+            self.bot = bots.GPTBot(self.plugin.build_prompt(), self.config)
+        print('ChatBot reloaded successfully')
+
     @staticmethod
     def create_from_args(args):
+        config = {}
         if args.save_file:
             muthur_lib = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
             save_file_path = os.path.join(muthur_lib, constants.SAVES_DIR, args.save_file + constants.SAVE_EXT)
