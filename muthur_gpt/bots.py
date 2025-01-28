@@ -8,6 +8,7 @@ from openai import OpenAI
 
 from muthur_gpt import constants
 
+
 class ChatBot():
     """
     Base class to handle interaction with chat bots
@@ -15,7 +16,7 @@ class ChatBot():
     def __init__(self):
         pass
 
-    def get_reply():
+    def get_reply(self, user_input):
         raise NotImplemented
 
     @staticmethod
@@ -25,11 +26,14 @@ class ChatBot():
         else:
             return GPTBot(plugin.build_prompt(), config, args.api_key)
 
+
 class GPTBot(ChatBot):
     """
     Primary chatGPT bot to handle interaction with muthur
     """
-    def __init__(self, prompt, config, api_key_arg):
+    def __init__(self, prompt, config, api_key_arg=None):
+        super().__init__()
+        self.prompt = prompt  # to remove
         api_key = api_key_arg or os.getenv(constants.ENVVAR_OPENAI_API_KEY) or \
             config.get(constants.CONFIG_KEY_OPENAI_API_KEY)
         if not api_key:
@@ -37,7 +41,7 @@ class GPTBot(ChatBot):
                   "Please obtain one from openAI and set it via one of these. "
                   "methods. Exiting.")
             exit(1)
-        self.client = OpenAI(api_key = api_key)
+        self.client = OpenAI(api_key=api_key)
         system_message = {
                             "role": "system",
                             "content": prompt
@@ -57,12 +61,14 @@ class GPTBot(ChatBot):
             {"role": "assistant", "content": bot_replay})
         return bot_replay
 
+
 class TestBot(ChatBot):
     """
     Bot for testing without accessing online API.
     Plugins can filter replies as necessary.
     """
     def __init__(self, plugin):
+        super().__init__()
         self.plugin = plugin
 
     def get_reply(self, user_input):
